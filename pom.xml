@@ -15,6 +15,7 @@
 	<description>kubernetes + spring web + gitHub actions</description>
 	<properties>
 		<java.version>17</java.version>
+		<app.image.name>kubernetes</app.image.name>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -41,6 +42,26 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<from>
+						<image>openjdk:17-jdk-slim-buster</image>
+					</from>
+					<container>
+						<ports>
+							<port>8080</port>
+						</ports>
+						<format>OCI</format>
+					</container>
+					<to>
+						<image>localhost:5000/${app.image.name}</image>
+					</to>
+				</configuration>
+
 			</plugin>
 		</plugins>
 	</build>
