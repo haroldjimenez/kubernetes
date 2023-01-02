@@ -16,8 +16,8 @@ jobs:
       - name: Build image
         run: mvn jib:dockerBuild -Djib.allowInsecureRegistries=true
       - name: Define image tags
-          id: meta
-          uses: actions/docker-metadata-action@v3
-          with:
-            images: localhost:5000/kubernetes
-            tags: ${{ github.run_number }}
+        id: meta
+        uses: actions/docker-metadata-action@v3
+        with:
+          images: localhost:5000/kubernetes
+          tags: ${{ github.run_number }}
