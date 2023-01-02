@@ -16,7 +16,6 @@ jobs:
       - name: Build image
         run: mvn jib:dockerBuild -Djib.allowInsecureRegistries=true
       - name: Define image tags
-          if: github.ref == 'refs/heads/master'
           id: meta
           uses: actions/docker-metadata-action@v3
           with:
