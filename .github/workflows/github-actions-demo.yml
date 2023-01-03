@@ -23,9 +23,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: localhost:5000/kubernetes
+          flavor: latest=true
           tags: |
-            type=schedule
             type=ref,event=branch
-            type=ref,event=tag
             type=ref,event=pr
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=semver,pattern={{version}}
