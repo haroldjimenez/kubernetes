@@ -20,7 +20,12 @@ jobs:
         run: mvn jib:dockerBuild -Djib.allowInsecureRegistries=true
       - name: Define image tags
         id: meta
-        uses: actions/docker-metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: localhost:5000/kubernetes
-          tags: ${{ github.run_number }}
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=ref,event=tag
+            type=ref,event=pr
+            type=raw,value=latest,enable={{is_default_branch}}
